@@ -63,7 +63,7 @@ It's time to glue everything together!
 
 ## The Scripts
 
-Get ready for the magic! Our scripts are the key to the victory flag.
+Get ready for the magic! Our scripts are the key to the victory flag. See the full repository [here](https://github.com/testing22-0/solution-challenge-10-23/).
 
 ### Entrypoint - [src/page_404.js](src/page_404.js)
 
