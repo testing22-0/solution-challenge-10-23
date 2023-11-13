@@ -27,7 +27,7 @@ Oh, the intrigue! This hint whispered about a clandestine affair between the cli
 
 **Decoding the Hint:**
 - **Client vs Server Parsing:** The title parsing (`<%- title %>`) on the server in `header.ejs` rendered a dynamic HTML version when fed with broken input. Uncover the parsing discrepancy, and you're on the brink of mutation XSS ([mXSS](https://cure53.de/fp170.pdf)) enlightenment.
-- **Key Takeaway:** Despite DOMPurify filtering malicious input, you could have sent valid but broken HTML to the server and made the recipient browser fix it. By breaking out of the `</title>` tag, it was possible to inject scripts into the page.
+- **Key Takeaway:** Despite DOMPurify filtering malicious input, you could have sent valid but broken HTML to the server and made the recipient browser fix it. By breaking out of the `</title>` tag, it was possible to inject scripts into the page as illustrated in the image above.
 
 Now we can inject and control anything from the browser! Can't we?
 
