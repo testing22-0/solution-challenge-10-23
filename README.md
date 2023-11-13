@@ -118,5 +118,5 @@ Man, what a ride! We plunged deep into this challenge, messing with mutation XSS
 1. [Intigriti October XSS Challenge](https://challenge-1023.intigriti.io/)
 2. [mXSS Attacks](https://cure53.de/fp170.pdf)
 2. [Chrome Developer Protocol](https://chromedevtools.github.io/devtools-protocol/)
-3. [Intigriti Discord](https://discord.gg/intigriti)
-4. [Intigriti Twitter](https://twitter.com/intigriti)
+3. [Intigriti's Discord](https://discord.com/invite/cukmQBGAKk)
+4. [Intigriti's Twitter](https://twitter.com/intigriti)
