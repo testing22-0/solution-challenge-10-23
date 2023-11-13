@@ -105,7 +105,7 @@ I've crafted an iterative script to bring a touch of automation to the port extr
 
 > 💡 Tip: Clone the repository then execute `npm i && npm start` and `ngrok http 3001` in another tab to host the server.
 
-For an in-depth dive into the magic behind automated port-guessing, check out the code documentation.
+For an in-depth dive into the magic behind automated port-guessing, check out the [code documentation](https://github.com/testing22-0/solution-challenge-10-23/blob/00961ca4ac1717412c40c10067ca5e889bddf530/src/index.js#L44C1-L75C4).
 
 ### The Flag
 
