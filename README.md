@@ -4,7 +4,7 @@
 
 Hey fellow hackers! 🎩💻 Ready for a wild ride into the world of XSS and hacking? In this [Intigriti's October XSS challenge](https://challenge-1023.intigriti.io/) writeup, we'll navigate through twists, turns, and a bunch of cat-related questions to reveal the precious flag! 🐱🚩 
 
-<img alt='are you ready' src=images/are-you-ready.png style='height:300px; width:300px;'/> 
+<img alt='are you ready' src=images/are-you-ready.png width=300/> 
 
 Let's dive into the solution!
 
@@ -23,7 +23,7 @@ The journey begins with a text-based nugget:
  
 Oh, the intrigue! This hint whispered about a clandestine affair between the client and server, specifically in title parsing.
 
-![mxss](images/mxss.png)
+<img src=images/mxss.png alt='mxss' width=500/>
 
 **Decoding the Hint:**
 - **Client vs Server Parsing:** The title parsing (`<%- title %>`) on the server in `header.ejs` rendered a dynamic HTML version when fed with broken input. Uncover the parsing discrepancy, and you're on the brink of mutation XSS ([mXSS](https://cure53.de/fp170.pdf)) enlightenment.
@@ -33,13 +33,13 @@ Now we can inject and control anything from the browser! Can't we?
 
 ### Hint 2: Chrome Developer Protocol (CDP) Link
 
-They said, throwing us a link to the Chrome Developer Protocol (CDP):
+They said, throwing us a link to the [Chrome Developer Protocol](https://chromedevtools.github.io/devtools-protocol/) (CDP):
 
 > "Let's keep this one short and sweet..."
  
 Sweet indeed! A seemingly innocent link that opened the door to a rabbit hole of possibilities!! 😱
 
-![CDP screenshot](images/cdp.png)
+<img src=images/cdp.png alt='cdp' width=500/>
 
 **Decoding the Hint:**
 - **CDP Exploration:** The link led us to the Chrome Developer Protocol, where understanding the APIs and how to communicate with a running Chrome seemed possible.
@@ -53,7 +53,7 @@ But what do we do with that information? Here comes the last hint!
 > 
 And then, a meme! A picture is worth a thousand words, they say. In the upper part, a man says "NO" to "Manual download," and in the bottom part, a resounding "YES" to "Auto download."
 
-![Auto download meme](images/manual-vs-auto-download.png)
+<img src=images/manual-vs-auto-download.png alt='manual-vs-auto' width=500/> 
 
 **Decoding the Hint:**
 - **Auto-Download Revelation:** The meme hinted at the browser's ability to auto-download specific files upon opening. The trick? Serve malicious files with the header `Content-Disposition: attachment` to make the Chromium browser download them automatically regardless of the extension.
@@ -111,7 +111,7 @@ And as the grand finale, the flag awaits: **INTIGRITI{Pupp3t3eR_wIth0ut_S0P_LFI}
 ## Conclusion 
 Man, what a ride! We plunged deep into this challenge, messing with mutation XSS and puppeteer tricks. We threw in scripts, set off auto-downloads, and played around with the CDP. It's more than just hunting for a flag; it's been a crazy journey. Every clue, stumble, and "aha" moment brought us together. It's not just about the swag; it's the thrill, the joy of beating challenges and vibing with the Intigriti community. ❤️🚀
 
-![Thank you](images/thank-you.png)
+<img src=images/thank-you.png alt='thank you' width=500/>
 
 ## References
 
