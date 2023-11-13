@@ -103,7 +103,7 @@ Let's break it down:
 
 I've crafted an iterative script to bring a touch of automation to the port extraction. Simply hit up `/solve`, and the script autonomously tests various ports to pinpoint the right one.
 
-> 💡 Hint: Execute `npm i && npm start` after cloning the code to observe the script server in action.
+> 💡 Tip: Execute `npm i && npm start` after cloning the code to observe the script server in action.
 
 For an in-depth dive into the magic behind automated port-guessing, check out the code documentation.
 
