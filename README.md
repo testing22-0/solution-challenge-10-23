@@ -93,7 +93,7 @@ Let's break it down:
 
 - **Path string**: After the endpoint, the payload begins with `<svg><b id="`, introducing a closing `</title>` tag, a following `<script>` tag, a closing `>"` and a query parameter. For the payload to work, it was needed to encode any slashes present in it by HTML encoding `/` -> `&#x2f;` -> URL encoding twice -> `%2526%2523x2f%253b`.
 - **Injected script**: The payload injects a script with an `src` attribute pointing to a remote server (mine was https://a9b1-191-45-70-141.ngrok-free.app) hosting the scripts. This script is our entry point into the puppeteer exploit and the flag can be visualized from that same server.
-- **Query parameter**: The payload introduces the query parameter `startPort`, which typically varies between 35000 and 45000 (but in theory varies from 1 to 655355), and is used as an initial estimation of the puppeteer port at where the browsers run. The exploit involves an iterative process, maybe requiring multiple attempts to identify the correct port and extract the flag.
+- **Query parameter**: The payload introduces the query parameter `startPort`, which typically varies between 35000 and 45000 (but in theory varies from 1 to 65535), and is used as an initial estimation of the puppeteer port at where the browsers run. The exploit involves an iterative process, maybe requiring multiple attempts to identify the correct port and extract the flag.
 
 ### Streamlining Port Extraction
 
