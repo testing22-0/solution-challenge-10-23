@@ -101,9 +101,9 @@ Let's break it down:
 
 ### Streamlining Port Extraction
 
-I've crafted an iterative script to bring a touch of automation to the port extraction. After configuring your server (e.g. with `ngrok http 3001`), simply hit up `/solve` and the script autonomously tests various ports to pinpoint the right one.
+I've crafted an iterative script to bring a touch of automation to the port extraction. After configuring your server, simply hit up `/solve` and the script autonomously tests various ports to pinpoint the right one.
 
-> 💡 Tip: Execute `npm i && npm start` after cloning the code to observe the script server in action.
+> 💡 Tip: Clone the repository then execute `npm i && npm start` and `ngrok http 3001` in another tab to host the server.
 
 For an in-depth dive into the magic behind automated port-guessing, check out the code documentation.
 
