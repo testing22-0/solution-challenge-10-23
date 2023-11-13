@@ -67,7 +67,7 @@ Get ready for the magic! Our scripts are the key to the victory flag.
 
 ### Entrypoint - [src/page_404.js](src/page_404.js)
 
-The party starts with `page_404.js`, orchestrating the exploit dance. It cracks Puppeteer's port, initiating the auto-download of `fetcher.html` for local file extraction.
+The party starts with `page_404.js`, orchestrating the exploit dance. It quickly cracks Puppeteer's port, initiating the auto-download of `fetcher.html` for local file extraction without letting the browser close.
 
 ### Fetcher - [src/fetcher.html](src/fetcher.html)
 
